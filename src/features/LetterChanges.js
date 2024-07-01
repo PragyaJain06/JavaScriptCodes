@@ -34,4 +34,4 @@ return output.concat(noWord).join("");
 
 }
 console.log(letterChanges(input))
-//my approach
+//my approach for this
