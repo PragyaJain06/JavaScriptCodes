@@ -35,3 +35,39 @@ return output.concat(noWord).join("");
 }
 console.log(letterChanges(input))
 //my approach for this
+
+
+
+//best approach for it
+let str1= "zheLLZo! worldz!"
+let str2=""
+let str3=""
+
+function letterUpperCase(){
+    for(let i in str1){
+    if((str1.charCodeAt(i)>=65 && str1.charCodeAt(i)<=90) || (str1.charCodeAt(i)>=97 && str1.charCodeAt(i)<=122)){
+       if(str1.charCodeAt(i)===90){
+           str2+= String.fromCharCode(65)
+       }else if(str1.charCodeAt(i)===122){
+           str2+= String.fromCharCode(97)
+       }else{
+            str2+=String.fromCharCode(str1.charCodeAt(i)+1)
+       }
+        
+
+    }else{
+       str2+=str1[i]
+    }
+    
+    let vowels=["a","e","o",'i','u']
+    if(vowels.includes(str2[i])){
+        str3+=str2[i].toUpperCase();
+    }else{
+        str3+=str2[i]
+    }
+}
+return str3;
+}
+
+console.log(letterUpperCase())
+
