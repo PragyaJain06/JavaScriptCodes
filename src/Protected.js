@@ -7,3 +7,14 @@ export const Protected=()=>{
 }
 
 //outlet is a place where children can render
+
+{/* <BrowserRouter>
+<Routes>
+  <Route path='/' element={<ShimmerUI/>}/>
+  <Route path='/login' element={<Login/>}/>
+  <Route element={<Protected/>}>
+  <Route path='/team' element={<Team/>}/>
+  <Route path='/about' element={<Routing/>}/>
+  </Route>
+</Routes>
+</BrowserRouter> */}
