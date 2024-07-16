@@ -10,3 +10,5 @@ Array.prototype.myForEach= function(cb){
 }
 
 arr.myForEach(cb)
+
+//returns undefined it only performs side effects on each element of the array
