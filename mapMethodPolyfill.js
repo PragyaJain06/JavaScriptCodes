@@ -10,3 +10,6 @@ Array.prototype.myMap= function(cb){
 }
 const result= arr.myMap((ele)=>ele*2)
 console.log(result)
+
+//returns new array
+
