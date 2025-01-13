@@ -24,3 +24,33 @@ function inputStr(str,n){
 } 
 
 console.log(inputStr(str,1))
+
+
+
+
+
+
+
+
+
+
+
+
+
+APPROACH 2
+
+const str = "geeksforgeeks"; // Example string
+
+function nonRepeating(str, n) {
+    let result = {}; 
+
+    
+    for (let char of str) {
+        result[char] = (result[char] || 0) + 1;
+    }
+
+    const nonRepeatingChars = Object.keys(result).filter(char => result[char] === 1);
+
+  
+    return nonRepeatingChars[n - 1] || null;
+}
