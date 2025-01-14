@@ -1,0 +1,37 @@
+
+import React, { useEffect, useState } from "react";
+
+function ProgressBar() {
+  const [width, setWidth] = useState(0);
+  useEffect(() => {
+    let interval = 0;
+
+    interval = setInterval(() => {
+      setWidth((width) => {
+        if (width >= 100) {
+          clearInterval(interval);
+          return width;
+        } else {
+          return width + 10;
+        }
+      });
+    }, [1000]);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+  return (
+    <div
+      style={{
+        border: "1px solid",
+        width: `${width}%`,
+        backgroundColor: width === 10 ? "red" : "yellow",
+      }}
+    >
+      Progress Bar
+    </div>
+  );
+}
+
+export default ProgressBar;
