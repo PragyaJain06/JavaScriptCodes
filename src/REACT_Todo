@@ -1,0 +1,69 @@
+import React, { useState } from "react";
+
+function Test() {
+  const [value, setValue] = useState("");
+  const [toDo, setToDo] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const [editId, setEditId] = useState("");
+  const [editText, setEditText] = useState("");
+  const handleAdd = () => {
+    if (value && value.trim !== "") {
+      const item = {
+        id: new Date().getTime(),
+        name: value,
+      };
+      setToDo([...toDo, item]);
+      setValue("");
+    }
+  };
+  const handleDelete = (id) => {
+    let result = toDo?.filter((item) => item.id !== id);
+    setToDo(result);
+  };
+
+  const handleEdit = (id) => {
+    setEditMode(true);
+    setEditId(id);
+  };
+  const handleUpdate = (id) => {
+    let updated = toDo?.map((item) => {
+      if (item.id === id) {
+        return { ...item, id: id, name: editText };
+      } else {
+        return item;
+      }
+    });
+    setToDo(updated);
+    setEditText("");
+    setEditMode(false);
+  };
+  return (
+    <div>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      ></input>
+      <button onClick={handleAdd}>Add</button>
+      {editMode && (
+        <div>
+          <input
+            type="text"
+            onChange={(e) => setEditText(e.target.value)}
+          ></input>
+          <button onClick={() => handleUpdate(editId)}>Update</button>
+        </div>
+      )}
+      {toDo.length > 0 &&
+        toDo?.map((item) => (
+          <li>
+            {item.name}
+            <button onClick={() => handleEdit(item.id)}>Edit</button>
+            <button onClick={() => handleDelete(item.id)}>Delete</button>
+          </li>
+        ))}
+    </div>
+  );
+}
+
+export default Test;
