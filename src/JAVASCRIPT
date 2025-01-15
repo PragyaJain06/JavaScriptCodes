@@ -1,0 +1,20 @@
+
+const st="JAVASCRIPTUG"
+//"JA, VA, SC, RI, PT"
+
+function modify(str,n){
+    if(n===0){
+        return [str];
+    }else{
+        let res=[]
+     for(let i=0; i<str.length; i+=n){
+         res.push(str.slice(i,n+i).split("").join(""))
+        
+     }
+     return res;
+   
+    }
+    
+}
+
+console.log(modify(st,2))
