@@ -1,0 +1,19 @@
+// Input: [1, [2, [3, [4, 5]]]]
+// Output: [1, 2, 3, 4, 5]
+
+const arr=[1, [2, [3, [4, 5]]]]
+let res=[]
+function flattenArray(arr){
+    arr.map((item)=>{
+       if(Array.isArray(item)){
+          flattenArray(item);
+         
+       } else{
+           res.push(item)
+       }  
+        
+    })
+    return res;
+}
+
+console.log(flattenArray(arr))
