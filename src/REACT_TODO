@@ -1,0 +1,85 @@
+import React, { useState } from "react";
+
+function TicTacToe() {
+  const [board, setBoard] = useState(new Array(9).fill(null));
+  const [currentPlayer, setCurrentPlayer] = useState("X");
+  const [Iswinner, setIsWinner] = useState(null);
+  const [isDraw, setIsDraw] = useState(false);
+  const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  const handleClick = (index) => {
+    if (board[index] || Iswinner) return;
+    const newBoard = [...board];
+    newBoard[index] = currentPlayer;
+    setBoard(newBoard);
+    let winner = checkWinner(newBoard);
+    if (winner) {
+      setIsWinner(winner);
+      return;
+    } else if (newBoard.every((cell) => cell !== null)) {
+      setIsDraw(true);
+    } else {
+      setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
+    }
+  };
+
+  const checkWinner = (gameBoard) => {
+    for (let combination of winningCombinations) {
+      const [a, b, c] = combination;
+      if (
+        gameBoard[a] &&
+        gameBoard[b] === gameBoard[c] &&
+        gameBoard[a] === gameBoard[c]
+      ) {
+        return gameBoard[a];
+      }
+    }
+    return null;
+  };
+  const handleReset = () => {
+    setBoard(new Array(9).fill(null));
+    setCurrentPlayer("X");
+    setIsWinner(null);
+    setIsDraw(false);
+  };
+
+  return (
+    <>
+      <h2>
+        {Iswinner
+          ? `The winner is ${Iswinner}`
+          : isDraw
+          ? `It's a draw ${isDraw}`
+          : null}
+      </h2>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 50px)",
+          gap: "5px",
+        }}
+      >
+        {board.map((mark, index) => (
+          <button
+            key={index}
+            onClick={() => handleClick(index)}
+            style={{ width: "50px", height: "50px", fontSize: "20px" }}
+          >
+            {mark}
+          </button>
+        ))}
+        <button onClick={handleReset}>Reset</button>
+      </div>
+    </>
+  );
+}
+
+export default TicTacToe;
