@@ -1,0 +1,18 @@
+let a = 0;
+let b = 1;
+
+function fibonacci(n) {
+    console.log(a);
+    if (n > 1) {
+        console.log(b);
+    }
+
+    for (let i = 2; i < n; i++) {
+        let temp = a + b;
+        console.log(temp);
+        a = b;
+        b = temp;
+    }
+}
+
+fibonacci(10);

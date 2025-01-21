@@ -1,0 +1,39 @@
+const INCREMENT = 'INCREMENT';
+const DECREMENT = 'DECREMENT';
+
+export const add=(number)=>{
+    return {
+        type: INCREMENT,
+        payload:{
+            incrementNo: number+1
+        }
+    }
+}
+export const minus=(number)=>{
+    return{
+        type: DECREMENT,
+        payload:{
+            decrementNo: number-1
+        }
+    }
+}
+let initialState={
+    number:0,
+    loading:false,
+    error:null
+}
+function reducer(state=initialState,action){
+    switch(action.type){
+        case 'INCREMENT':
+            return {...state, number:state.number+action.payload.incrementNo }
+        case 'DECREMENT':
+            return {...state, number: state.number-action.payload.decrementNo}
+        default:
+            return state
+    }
+}
+const store= createStore(reducer);
+
+dispatch(minus(5))
+dispatch(add(4))
+export default store;

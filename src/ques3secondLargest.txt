@@ -1,0 +1,22 @@
+let arr=[1,0,3,43,45,6,76,876,4,6,2,132,600,1023,54,-1]
+let largest=Number.MIN_SAFE_INTEGER;
+let secondLargest=Number.MIN_SAFE_INTEGER;
+
+function secondLargestNum(arr){
+    if(arr.length>2){
+        for(let i=0; i<arr.length;i++){
+        if(arr[i]>largest && arr[i]>secondLargest){
+            secondLargest= largest;
+            largest=arr[i];
+        }else if(arr[i]>secondLargest && largest>arr[i]){
+            secondLargest=arr[i]
+        }
+    }
+      return secondLargest;
+    }else{
+        return null;
+    }
+    
+  
+}
+console.log(secondLargestNum(arr));

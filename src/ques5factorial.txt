@@ -1,0 +1,26 @@
+// find factorial using recurrsion
+
+function factorial(n){
+    if(n==0 || n===1){
+        return n;
+    }else{
+     return   n*factorial(n-1)
+    }
+}
+console.log(factorial(5))
+
+//without recurssion
+
+function factorial(n){
+    let out=1
+    if(n==0 || n===1){
+        return n;
+    }else{
+   for(i=n;i>0;i--){
+       out=out*i;
+   }
+
+    }
+    return  out;
+}
+console.log(factorial(5))

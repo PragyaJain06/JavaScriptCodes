@@ -1,0 +1,12 @@
+//reverse a string
+
+const str="pragya jain"
+const reverse= str.split('')
+function stringReverse(reverse){
+    let out=[]
+  for(let i=reverse.length-1;i>=0;i--){
+      out.push(reverse[i])
+  } 
+  return out.join('')
+}
+console.log(stringReverse(str))

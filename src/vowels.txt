@@ -1,0 +1,16 @@
+let str="hello world! how are you?";
+
+function vowel(str){
+    const vowels=['a','e','i','o','u'];
+    let out=[];
+    for(let i=0; i<str.length;i++){
+        
+        if(vowels.includes(str[i].toLowerCase())){
+        
+            out.push(str[i])
+        }
+    }
+    return [out, out.length];
+}
+
+console.log(vowel(str))

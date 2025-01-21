@@ -1,0 +1,69 @@
+function occurence(arr){
+   
+  let res={};
+  for(i of arr){
+      if(Object.keys(res).includes(i)){
+          continue;
+      }
+      else{
+        let   count=0;
+     for(j of arr){
+         if(i===j){
+             count=count+1;
+         }
+     }
+      res[i]=count;
+      }
+       
+    
+  }
+  let maxCount=0;
+  let mostOccuring
+  for(i in res){
+if(res[i]>maxCount){
+    maxCount=res[i];
+    mostOccuring=i;
+}
+  }
+  return mostOccuring;
+}
+console.log(occurence(arr))
+
+
+
+//optimized
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler
+
+const arr=[1,2,3,4,5,6,5,4,2,3,4,5,6,,9,9,9,9,9,9,6,23,1,2]
+// const arr= [6,1,2,6]
+function occurence(arr){
+ let res={};
+  for(i of arr){
+      if(res[i]){
+          res[i]=res[i]+1;
+      }else{
+          res[i]=1;
+      }
+  }
+  let mostOccuring;
+  let maxElement=0;
+  for(i in res){
+     if(res[i]>maxElement){
+         maxElement=res[i];
+         mostOccuring=i;
+     } 
+  }
+  return mostOccuring;
+}
+console.log(occurence(arr))
+
+
+
+
+
+
+
+
+
+

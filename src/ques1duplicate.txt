@@ -1,0 +1,14 @@
+const arrNum=[1,2,3,8,2,9,8,9,6,5]
+function duplicateNumber(arr){
+    let out=[]
+    let duplicates=[]
+    for(let i=0; i<arr.length; i++){
+        if(out.includes(arrNum[i])){
+            duplicates.push(arrNum[i])
+        }else{
+            out.push(arrNum[i])
+        }
+    }
+    return duplicates;
+}
+console.log(duplicateNumber(arrNum))

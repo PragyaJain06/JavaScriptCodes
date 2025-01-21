@@ -53,23 +53,3 @@ let res={};
   }
 
   console.log(final)
-
-
-
-APPROACH 3
-
-    let brands={}
-
-for(let i of purchases){
-
-    if(!brands[i.brand]){
-              brands[i.brand]=i;
-    }else if(new Date(brands[i.brand]["date"])< new Date(i.date)){
-        brands[i.brand]=i
-    }
-  
-}
-console.log(brands)
-let res=new Set(Object.values(brands).map((item)=>item.item)) 
-
-console.log(res)

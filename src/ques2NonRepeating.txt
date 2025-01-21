@@ -1,0 +1,31 @@
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler
+
+let str= "google"
+//n=1 => l
+//n=2 => e
+
+//duplicate="og";
+//out="gole"
+function nonRepeating(input, n){
+    let out=""
+    let duplicate=""
+    let output=""
+    for(let i=0; i<input.length;i++){
+        if(out.toLowerCase().includes(input[i].toLowerCase())){
+            duplicate+=input[i];
+            
+        }else{
+           out+=input[i]; 
+        }
+    }
+    for(let i=0;i<out.length;i++){
+        if(!(duplicate.toLowerCase().includes(out[i].toLowerCase()))){
+           output+=out[i] 
+        }
+        
+    }
+     return output[n-1];
+   
+}
+console.log(nonRepeating(str,1))

@@ -1,0 +1,18 @@
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler
+let input= "fun&!! time"
+function longestWord(str){
+      let ans=[]
+ let output= str.split(" ")
+ for(i of output){
+      let input = i.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")
+      ans.push(input)
+    
+ }
+   ans.sort((a,b)=> b.length-a.length )
+ 
+     return ans[0];
+    
+}
+
+console.log(longestWord(input))

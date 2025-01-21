@@ -1,0 +1,6 @@
+//capitalize first letter of string
+
+let str="my name is pragya jain"
+
+let result= str.split(' ').map((item)=>item.charAt(0).toUpperCase()+ item.slice(1,))
+console.log(result.join(' '))

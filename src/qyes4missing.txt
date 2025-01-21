@@ -1,0 +1,36 @@
+const arr=[1,2,5,4,7,8,10]
+const expectedSet= new Set(arr);
+const missing=[]
+
+function missingValue(arr){
+    const minValue=Math.min(...arr)
+    const maxValue= Math.max(...arr)
+    for(let i= minValue; i<=maxValue;i++){
+        console.log(i)
+    if(!expectedSet.has(i)){
+        missing.push(i)
+    }
+    }
+    return missing;
+    
+}
+
+console.log(missingValue(arr))
+
+
+//2md way
+const arr=[1,2,5,4,7,8,10]
+
+const min= Math.min(...arr);
+const max= Math.max(...arr);
+
+function findMissing(arr){
+    let missing=[]
+    for(let i=min; i<=max;i++){
+        if(!arr.includes(i)){
+            missing.push(i)
+        }
+    }
+    return missing;
+}
+console.log(findMissing(arr))
