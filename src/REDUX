@@ -73,5 +73,12 @@ STEP7:
 
 const fullPathName= useSelector((s)=>s.comps.backRoute) // fetching the value from localStorage even after if gets undefined we can still receive it
 
+redux-logger is a middleware used in Redux (often only in development) to log actions and the resulting state in the browser's console.
+This makes it easier to debug and track the flow of actions and state changes in the Redux store.
+
+let middleware = [apiSlice.middleware];
+if (process.env.REACT_APP_REDUX_LOGGER === "true") {
+  middleware.push(logger);
+}
 
 
