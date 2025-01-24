@@ -1,0 +1,77 @@
+REDUX 
+
+//createSlice is a Redux Toolkit function that simplifies creating a Redux slice by automatically generating action creators, action types, 
+and a reducer for a specific piece of state.
+
+STEP1: initial State
+STEP2: Create Slice
+
+const compSlice=createSlice({
+name:"",
+initialState,
+reducers:{   // an object which contains actions and state
+changeBackRoute:(action,state)=>{state.backPath=action.payload},
+changeBackRoute2:(action,state)=>{state.backPath=action.payload},
+},
+  
+});
+
+export default compSlice.reducer
+export const{
+changeBackRoute,
+changeBackRoute2
+}=compSlice.actions
+
+
+STEP3: Configure Store
+
+const Store = configureStore({
+  reducer: {
+    users: usersReducers,
+    comps: compsReducers,
+    applicant: ApplicantSlice,
+    [apiSlice.reducerPath]: apiSlice.reducer,  //A dynamic API slice reducer
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(middleware), //A custom middleware stack.
+  preloadedState: loadFromLocalStorage(), 
+});
+
+
+preloadedState is used to initialize the store with a predefined state, typically loaded from localStorage, 
+allowing you to persist data between page reloads.
+
+STEP:4
+
+Store.subscribe(() => saveToLocalStorage(Store.getState()));
+
+Store.subscribe: This is a method that allows you to listen for state changes in your Redux store.
+ Whenever an action is dispatched and the store state updates, the callback function passed to subscribe is executed.
+() => saveToLocalStorage(Store.getState()): The callback function executed on every store update:
+Store.getState() retrieves the current state of the store. 
+This function gives you the entire state object managed by the Redux store.
+saveToLocalStorage(Store.getState()) is a function that presumably saves the current state to localStorage (or some other persistent storage mechanism), 
+ensuring that the latest state is preserved even if the page is reloaded.
+
+STEP 5:
+setupListeners(Store.dispatch);
+
+setupListeners: This is a function provided by Redux Toolkit (usually in relation to API slices created with createSlice or createAsyncThunk).
+ It's used to set up listeners for specific actions such as those related to API requests.
+
+Store.dispatch: This is a method for dispatching actions to the Redux store. 
+The store will use this to send actions and update the state based on the action type and payload.
+
+Effect of this line: This line sets up any necessary listeners for asynchronous actions (like API calls) by passing Store.dispatch to setupListeners. 
+It ensures that any pending or fulfilled API actions are properly handled in the store.
+
+
+STEP6:
+dispatch(changeBackRoute("/fullpath")) //dispatching an action
+
+STEP7:
+
+const fullPathName= useSelector((s)=>s.comps.backRoute) // fetching the value from localStorage even after if gets undefined we can still receive it
+
+
+
