@@ -1,0 +1,116 @@
+Ques1.   
+const obj = {
+    value: 42,
+    toString() {
+        return "Hello";
+    }
+};
+
+console.log(obj + " World"); 
+
+Ans. Hello World
+
+REASON:
+const obj = {
+    value: 42,
+    greet() {
+        return "Hello";
+    }
+};
+
+console.log(obj + " World");  //Output: [object object] World
+
+✔️ greet() is NOT automatically called because it is just a method inside the object.
+✔️ JavaScript defaults to calling toString() if no valueOf() method is defined.
+✔️ Since toString() isn’t overridden, it returns "[object Object]".
+
+
+Scenario	Behavior
+obj + "text" (without toString())	----->Converts obj to "[object Object]"
+obj + "text" (with toString())------>	Uses custom toString() method
+greet() inside obj	----->Not called automatically
+valueOf() ---->exists	Used first before toString()
+
+
+
+
+
+Ques2. 
+const person = {
+    name: "John",
+    greet: function() {        
+        console.log(this.name);   
+    }
+};
+
+setTimeout(person.greet, 1000);
+
+ANSWER: undefined
+REASON: 
+The person object has a method greet(), which logs this.name.
+setTimeout(person.greet, 1000); schedules greet() to be executed after 1 second.
+Problem: When setTimeout calls greet(), it loses its original this binding.
+Inside greet(), this no longer refers to person, but instead defaults to:
+window (in browsers).
+undefined (in strict mode).
+Since window.name is usually an empty string (""), or undefined in strict mode, the output is undefined
+
+Solution
+
+Approach	                                    Output	                           Why?
+setTimeout(person.greet, 1000);	             undefined	              this is lost (defaults to window or undefined in strict mode)
+setTimeout(person.greet.bind(person), 1000);	John	                  bind() ensures this refers to person
+setTimeout(() => person.greet(), 1000);	      John	                         Arrow function preserves this
+Storing this in self	John	self keeps the correct reference
+
+const person = {
+    name: "John",
+    greet: function() {        
+        const self = this; // Store reference
+        setTimeout(function() {
+            console.log(self.name);
+        }, 1000);
+    }
+};
+
+person.greet(); // Calls greet(), which sets the timeout
+
+
+
+
+
+Ques3. THE CONCEPT OF PASS BY VALUE AND PASS BY REFERFENCE
+
+ANSWER:
+PASS BY REFERENCE
+
+ let obj1 = { name: "Alice" };
+let obj2 = obj1;  // obj2 references the same object as obj1
+obj2.name = "Bob";  // Modifying obj2 also modifies obj1, as both point to the same object
+console.log(obj1.name);  // Output: "Bob"
+
+Objects are passed by reference in JavaScript. When you assign an object to another variable, they both refer to the same object.
+Any changes made through one variable will affect the original object as well.
+
+function modifyObject(obj) {
+    obj.name = "Bob";  // Modifying the object inside the function
+}
+
+let person = { name: "Alice" };
+modifyObject(person);  // The object is passed by reference
+console.log(person.name);  // Output: "Bob"
+
+
+PASS BY VALUE let a = 10;
+let b = a;  // b is a copy of a
+b = 20;
+console.log(a);  // Output: 10 (a is unchanged)
+
+
+PASS BY VALUE--> For primitive datatatypes , the value for the original is remain unchanged and only new is changed.
+PASS BY REFERENCE--> For arrays, objects, the value for the reference datatype is changed, means both original and the new copy is changed.
+
+
+
+
+
