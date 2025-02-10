@@ -1,0 +1,60 @@
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler
+const marksArr=[
+    {
+        name:"a",
+        marks:78,
+        rollNo:1,
+    },
+        {
+        name:"b",
+        marks:23,
+        rollNo:2,
+    },
+        {
+        name:"c",
+        marks:81,
+        rollNo:3,
+    },
+        {
+        name:"b",
+        marks:47,
+        rollNo:4,
+    },
+        {
+        name:"b",
+        marks:43,
+        rollNo:5,
+    },
+    {
+        name:"d",
+        marks:12,
+        rollNo:6,
+    },
+    
+        {
+        name:"c",
+        marks:81,
+        rollNo:7,
+    },
+    ]
+    
+function getMarks(arr){
+let a=arr.reduce((acc,curr)=>{
+    if(!acc[curr.name]){
+          acc[curr.name]=curr.marks   
+    }else{
+        acc[curr.name]+=curr.marks
+    }
+
+return acc
+
+    
+}
+,{})  
+return a
+}
+
+console.log(getMarks(marksArr))
+    
+    
