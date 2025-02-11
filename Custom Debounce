@@ -1,0 +1,22 @@
+const debounce = (func, delay) => {
+let timer;
+let callCount=0
+return function(...args){
+      callCount++; // Increment call count
+    const currentCall = callCount; // Capture the call number
+
+    console.log(`Call ${currentCall} triggered, waiting...`);
+   clearTimeout(timer);
+   timer= setTimeout(()=>{
+         console.log(`Executing Call ${currentCall} ${args}`);
+       func.apply(this,args)},delay)
+}
+};
+
+const log = () => console.log("Debounced function executed");
+const debouncedLog = debounce(log, 1000);
+
+debouncedLog("Hello");
+debouncedLog("world");
+debouncedLog("learning");
+debouncedLog("javascript","beutiful");
