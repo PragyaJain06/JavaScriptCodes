@@ -1,0 +1,51 @@
+const log=()=>{
+    console.log("Executing throttling!")
+}
+
+const throttleFunc=(fn, delay)=>{
+    let timer;
+    return function(...args){
+        if(!timer){
+            timer=setTimeout(()=>{
+                fn.apply(this,args)
+                console.log(`Throttling Executed with ${args}`)
+                timer=null;
+            },delay)
+        }
+    }
+}
+
+const throttledFn= throttleFunc(log,1000)
+
+throttledFn(); //ignored 0-1000
+throttledFn(); //ignored 0-1000
+throttledFn(); //ignored 0-1000
+
+setTimeout(()=>{
+    throttledFn("First") //ignored 0-1000
+},500)
+
+setTimeout(()=>{
+    throttledFn("Second") // 1000ms expired
+},1500)
+
+
+setTimeout(()=>{
+    throttledFn("Third")
+},2000) // 1500-1000 =500 ms<1000 ignored
+
+setTimeout(()=>{
+    throttledFn("4") //  2500 expired
+},3000)
+
+throttling means executing the fnc for the first time and then executing it evertytime in the specific interval of 1000
+
+
+OUTPUT:
+
+Executing throttling!
+Throttling Executed with 
+Executing throttling!
+Throttling Executed with Second
+Executing throttling!
+Throttling Executed with 4
