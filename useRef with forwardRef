@@ -1,0 +1,31 @@
+//child component
+import React, { forwardRef } from "react";
+
+const ChildTest = forwardRef(({ placeholder }, ref) => {
+  //props always the first param and ref always the last one
+  return <input type="text" ref={ref} placeholder={placeholder} />;
+});
+
+export default ChildTest;
+
+
+
+//parent component
+import React, { useRef } from "react";
+import ChildTest from "./ChildTest";
+
+function Test1() {
+  const inputRef = useRef(null);
+  const handleClick = () => {
+    inputRef.current.focus(); //focus the input field
+  };
+  return (
+    <>
+      {/* <input type="text" placeholder="input text here...." ref={inputRef} /> */}
+      <ChildTest ref={inputRef} placeholder="input text here...!" />
+      <button onClick={handleClick}>CLick Me</button>
+    </>
+  );
+}
+
+export default Test1;
