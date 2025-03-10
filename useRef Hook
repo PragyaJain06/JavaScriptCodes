@@ -1,0 +1,16 @@
+import React, { useRef } from "react";
+
+function Test1() {
+  const inputRef = useRef();
+  const handleClick = () => {
+    inputRef.current.focus(); //focus the input field
+  };
+  return (
+    <>
+      <input type="text" placeholder="input text here...." ref={inputRef} />
+      <button onClick={handleClick}>CLick Me</button>
+    </>
+  );
+}
+
+export default Test1;
