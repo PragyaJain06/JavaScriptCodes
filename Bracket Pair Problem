@@ -1,0 +1,44 @@
+// Problem: Valid Parentheses
+// Description:
+// Given a string s containing just the characters '(', ')', '{', '}', '[', and ']', determine if the input string is valid.
+// A string is considered valid if:
+// Open brackets must be closed by the same type of brackets.
+// Open brackets must be closed in the correct order.
+// Every close bracket has a corresponding open bracket of the same type.
+// Examples:
+// Example 1:
+// Input: "()"
+// Output: true
+// Example 2:
+// Input: "()[]{}"
+// Output: true
+// Example 3:
+// Input: "(]"
+// Output: false
+// Example 4:
+// Input: "([])"
+// Output: true
+
+function checkParentheses(input){
+    let arr=[];
+    const brackets={
+        ")":"(",
+        "}":"{",
+        "]":"["
+    }
+    for(let char of input){
+        console.log(char)
+        if(char==="(" || char==="{" || char==="["){
+            arr.push(char)
+        }else if(char===")"|| char==="}" || char==="]"){
+           
+            if(arr.length===0 || arr.pop()!==brackets[char]){
+                return false;
+            }
+        
+        }
+    }
+    return arr.length===0;
+    
+}
+console.log(checkParentheses("([])"))
