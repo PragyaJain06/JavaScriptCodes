@@ -1,0 +1,18 @@
+console.log(1); //1st 
+const p1 = new Promise((res, rej) => res(1000));
+p1.then((data) => {
+    console.log(9);
+    setTimeout(() => console.log(0),0);
+    setTimeout(() => console.log(data), data); //microtask
+});
+setTimeout(() => console.log(11), 1000); //callback
+setTimeout(() => console.log(0,"first"),0);
+console.log(2); //2nd
+
+1
+2
+9
+0
+0
+11
+1000
