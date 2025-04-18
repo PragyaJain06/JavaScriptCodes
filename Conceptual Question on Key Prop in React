@@ -1,0 +1,2 @@
+1. Key acts a unique identifier. Any change in the key will render React DOM because DOM encounters the change in the state,prop it will re-render
+2. If the key is same, then unpredicatable behaviour will be shown in DOM because it won't be able to recognize which node is actually changed
