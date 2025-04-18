@@ -1,0 +1,17 @@
+const arr=[1,5,2,5,3,2,5,4,6,7]
+
+function maxOccur(arr){
+    let res={}
+    let maxCount=0;
+    let ele=null;
+    for(let i of arr){
+     res[i]= (res[i] ||0) +1; //find the number of count of every element
+     if(res[i]>maxCount){ // compared this with the values in res obj
+         maxCount=res[i];
+         ele=i
+     }
+    }
+    return ele;
+}
+
+console.log(maxOccur(arr))
