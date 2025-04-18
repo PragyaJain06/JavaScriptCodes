@@ -1,0 +1,80 @@
+import React from "react";
+
+function Test() {
+  const columns = [
+    { id: "id", label: "ID" },
+    { id: "name", label: "Name" },
+    { id: "email", label: "Email" },
+    { id: "role", label: "Role" },
+    { id: "status", label: "Status" },
+  ];
+  const rows = [
+    {
+      id: 1,
+      name: "Alice Johnson",
+      email: "alice@example.com",
+      role: "Admin",
+      status: "Active",
+    },
+    {
+      id: 2,
+      name: "Bob Smith",
+      email: "bob@example.com",
+      role: "Editor",
+      status: "Inactive",
+    },
+    {
+      id: 3,
+      name: "Carol Lee",
+      email: "carol@example.com",
+      role: "Viewer",
+      status: "Active",
+    },
+    {
+      id: 4,
+      name: "David Kim",
+      email: "david@example.com",
+      role: "Admin",
+      status: "Pending",
+    },
+  ];
+  //   let data = [];
+  //   const makeRowsCols = () => {
+  //     for (let i = 0; i < rows.length; i++) {
+  //       const r = [];
+  //       for (let j = 0; j < columns.length; j++) {
+  //         r.push()
+  //       }
+  //       data.push(r)
+  //     }
+  //   };
+  return (
+    <table style={{ border: "1px solid black" }}>
+      {rows?.map((item) => (
+        <tr key={item?.id}>
+          {columns?.map((colItem) => (
+            <td key={colItem?.id}>{item[colItem.id]}</td>
+          ))}
+        </tr>
+      ))}
+
+      {/* <tr>
+        <th style={{ borderBottom: "1px solid black" }}>Company</th>
+        <th style={{ borderBottom: "1px solid black" }}>Contact</th>
+        <th style={{ borderBottom: "1px solid black" }}>Country</th>
+      </tr>
+      <tr>
+        <td style={{ borderBottom: "1px solid black" }}>Alfreds Futterkiste</td>
+        <td>Maria Anders</td>
+        <td>Germany</td>
+      </tr>
+      <tr>
+        <td>Centro comercial Moctezuma</td>
+        <td>Francisco Chang</td>
+        <td>Mexico</td>
+      </tr> */}
+    </table>
+  );
+}
+
+export default Test;
