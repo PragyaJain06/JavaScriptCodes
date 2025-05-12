@@ -1,0 +1,40 @@
+const keypadMap = {
+    2: ['a', 'b', 'c'],
+    3: ['d', 'e', 'f'],
+    4: ['g', 'h', 'i'],
+    5: ['j', 'k', 'l'],
+    6: ['m', 'n', 'o'],
+    7: ['p', 'q', 'r', 's'],
+    8: ['t', 'u', 'v'],
+    9: ['w', 'x', 'y', 'z']
+};
+
+
+const mapping = (digits) => { //23
+    if (digits.length === 0) return [];
+
+    const result = [];
+
+   const backtrack = (path, index) => {
+    console.log("CALL →", path, index);
+
+    if (path.length === digits.length) {
+        console.log("✅ PUSH", path);
+        result.push(path);
+        return;
+    }
+
+    const letters = keypadMap[digits[index]];
+    for (let letter of letters) {
+        console.log("↪️", path, "+", letter);
+        backtrack(path + letter, index + 1);
+    }
+
+    console.log("⬅️ RETURNING", path, index);
+}
+
+    backtrack("", 0);  
+    return result;
+}
+
+console.log(mapping("23"));
