@@ -1,0 +1,33 @@
+// Input: "aabbccdef"
+// Output: "d"
+
+// Input: "foobar"
+// Output: "f"
+
+// Input: "aabbcc"
+// Output: "No Unique Character Found"
+
+let input="foobar"
+
+function findFirstNonRepeatingCharacter(input1) {
+  // your code here
+  let res={}
+  for(let i of input1){
+      if(!res[i]){
+          res[i]=1
+      }else{
+          res[i]+=1
+      }
+  }
+  for(let [x,y] of Object.entries(res)){
+      if(y===1){
+          return x;
+      }
+     
+  }
+  return "no"
+  
+}
+
+
+console.log(findFirstNonRepeatingCharacter(input))
