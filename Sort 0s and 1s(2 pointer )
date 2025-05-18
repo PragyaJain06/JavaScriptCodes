@@ -1,0 +1,43 @@
+// You are given an array of Os and 1s in random order. Put Os on the left side and is on the array.
+
+ const inputArr = [0, 1, 0, 1, 0, 0, 1, 1, 1, 0];
+// 2 Output array = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1];
+
+
+// function sorting(arr){
+
+// const zeroArr=[]  
+// const onesArr=[]
+// for(let i of arr){
+//     if(i===0){
+//         zeroArr.push(i)
+//     }else{
+//         onesArr.push(i)
+//     }
+// }
+// return zeroArr.concat(onesArr)
+
+// }
+// console.log(sorting(inputArr))
+
+
+function sorting(arr) {
+    let left = 0;// 0
+    let right = arr.length - 1; //9
+    
+ while(left<right){ //3<4
+     while(arr[left]===0 && left<right) left++; //l=3
+     while(arr[right]===1 && left<right) right--; //r=9
+     if(left<right){ //3<5
+         [arr[left],arr[right]]=[arr[right],arr[left]] //a[3],a[5]=a[5],a[3]
+           left++; //4
+         right--; //4
+     }
+   
+ }
+
+    return arr;
+}
+
+console.log(sorting(inputArr),"sssssssss")
+
