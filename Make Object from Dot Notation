@@ -1,0 +1,46 @@
+// Input:
+const fields = {
+  "user.name": "John",
+  "user.address.street": "Main St",
+  "user.address.city": "Pune",
+  "user.age": 28
+};
+
+Output:
+{
+  user: {
+    name: "John",
+    age: 28,
+    address: {
+      street: "Main St",
+      city: "Pune"
+    }
+  }
+}
+
+const finalObj = (field) => {
+  let result = {};
+for( let [x,y] of Object.entries(field)){
+   let keys= x.split(".");
+   let current= result;
+   for(let i=0; i<keys.length; i++){
+       let key= keys[i];
+       if(i===keys.length-1){
+           current[key]=y
+       }else{
+           if(!current[key]){
+               current[key]={}
+           }
+           current=current[key]
+           
+       }
+   }
+}
+
+
+  return result;
+};
+
+
+console.log(finalObj(fields))
+
