@@ -20,3 +20,21 @@ console.log("6");
 //1 4 6 3 5 2
 
 
+async function test() {
+  console.log("A");
+  await Promise.resolve();
+  console.log("B");
+}
+test();
+console.log("C");
+
+async function run() {
+  await console.log("1");
+  await console.log("2");
+  console.log("3");
+}
+run();
+console.log("4");
+
+A C 1 4 B 2 3 
+
