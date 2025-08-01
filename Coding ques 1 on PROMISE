@@ -1,0 +1,22 @@
+// You need to make an API call using fetch.
+// If it fails, try again — maximum 3 times.
+// Add a delay (say 1 second) between retries.
+
+const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+const callApi=async(count=0)=>{
+    try{
+     const res= await fetch("https://dummyjson.com/products")
+     if(!res.ok){
+    if(count<=3){
+       await wait(1000);
+       return callApi(count+1) 
+        }
+    }
+    const data= await res.json()
+    return data;   
+    }catch(err){
+    console.log("Error while fetching the data:",err)
+    }
+}
+  callApi().then(data => console.log("Final data:", data));
