@@ -1,0 +1,74 @@
+//so the question is we have to run parallel api calls if any one fails then use promise.all otherwise if 2 fail yet we want result of other successful api calls we will use promise.allSettled()
+
+import React from 'react'
+
+function Parallel() {
+
+  async function fetchFailingAPI() {
+    throw new Error("❌ This API fails intentionally");
+  }
+async function fetchProducts() {
+  // returns a Promise resolving to an array of products
+  try{
+const res=await fetch('https://dummyjson.com/products')
+if(!res.ok){
+    throw new Error("Error")
+}
+const data= await res.json()
+return data?.products;
+  }catch(err){
+console.log("Error while fetching the API:",err)
+  }
+}
+
+async function fetchCategories() {  
+  try{
+const res=await fetch('https://dummyjson.com/products/categories')
+if(!res.ok){
+    throw new Error("Error")
+}
+const data= await res.json()
+return data;
+  }catch(err){
+console.log("Error while fetching the API:",err)
+  }
+}
+
+async function fetchReviews() {
+  // returns a Promise resolving to an array of reviews
+    try{
+const res=await fetch('https://dummyjson.com/recipes')
+if(!res.ok){
+    throw new Error("Error")
+}
+const data= await res.json()
+return data?.recipes;
+  }catch(err){
+console.log("Error while fetching the API:",err)
+  }
+}
+
+
+async function fetchAllResources(){
+// const allPromise= new Promise.all([fetchCategories,fetchProducts,fetchReviews]);
+// return allPromise;
+try{
+const [ categories,recipes,products,failedApi]= await Promise.allSettled([fetchCategories(),fetchReviews(),fetchProducts(),fetchFailingAPI()])
+return {categories,recipes,products,failedApi}
+}catch(err){
+  console.log("Error in Parallel APi",err)
+}
+}
+fetchAllResources().then(data=>console.log(data))
+
+  return (
+    <div>Parallel</div>
+  )
+}
+
+export default Parallel;
+
+// Bonus Question (Follow-Up):
+// If one of the API calls fails (e.g., network error in fetchReviews), how would you handle the error so that other successful results are not lost?
+
+// Would you like me to create bonus test cases or add test runner code for this too?
